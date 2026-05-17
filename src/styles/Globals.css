@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #ff2b2b;
+    --color-secondary: #ff6b00;
+    --color-bg: #070707;
+    --color-muted: #9ca3af;
+    --color-glass: rgba(255, 255, 255, 0.05);
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+    --glow-red: rgba(255, 43, 43, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #070707;
+    color: #ffffff;
+    /* Fallback fonts show instantly before Google Fonts loads */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #0d0d0d; }
+  ::-webkit-scrollbar-thumb { background: #ff2b2b; border-radius: 3px; }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glow-text {
+    background: linear-gradient(135deg, #ff2b2b, #ff6b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .clip-skewed {
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(255, 43, 43, 0.4);
+    box-shadow: 0 0 10px rgba(255, 43, 43, 0.15);
+  }
+
+  /* Orbitron fallback: Arial Black looks similar enough before font loads */
+  .font-orbitron {
+    font-family: 'Orbitron', 'Arial Black', sans-serif;
+  }
+}
+
+@layer utilities {
+  .animate-glow-pulse { animation: glowPulse 2s ease-in-out infinite; }
+  .animate-float      { animation: float 3s ease-in-out infinite; }
+  .animate-neon-blink { animation: neonBlink 1.5s ease-in-out infinite; }
+}
+
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 10px rgba(255,43,43,0.4); }
+  50%      { box-shadow: 0 0 30px rgba(255,43,43,0.6), 0 0 60px rgba(255,107,0,0.3); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-10px); }
+}
+@keyframes neonBlink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
